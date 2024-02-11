@@ -73,6 +73,9 @@ export default{
         }
     }
    },
+   created (){
+    this.userInfo.join_date = this.dateFormat()
+   },
    methods :{
     insertInfo(){
         // 1) 유효성 체크
@@ -135,6 +138,13 @@ export default{
             "param" : newObj
         }
         return sendData;
+    },
+    dateFormat(){
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = ('0'+date.getMonth()+1).slice(-2);
+        let day = ('0'+date.getDate()).slice(-2);
+        return `${year}-${month}-${day}`;
     }
    }
 }

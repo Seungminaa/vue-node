@@ -84,12 +84,12 @@ export default{
             await axios.put('/api/user/' + this.userInfo.user_id, data)
                         .then(res => {
                             console.log(res)
-                            if(res.affectedRows != 0){
-                                if(res.changedRows ==0){
-                                    alert('수정 내역이 없습니다.');
-                                }else{
-                                    alert('정상적으로 수정되었습니다.');
-                                }
+                            if(res.changedRows ==0){
+                                alert('수정 되지 않았습니다.');
+                                this.$router.push({ name: 'userList' });
+                            }else{
+                                alert('정상적으로 수정되었습니다.');
+                                this.$router.push({ name: 'userInfo',query : {"userId" : this.userInfo.user_id} });
                             }
                         })
                         .catch(err => console.log(err))

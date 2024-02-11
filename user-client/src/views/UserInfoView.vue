@@ -85,12 +85,27 @@ export default{
             let result = await axios.get('/api/user/' + userId)
                                 .catch(err => console.log(err))
             let list = result.data;
+            let newDate = this.dateFormat(list.join_date);
+            list.join_date = newDate;
             this.userInfo = list;
+        },
+        dateFormat(val){
+            let result = null;
+            if(val != null){
+                let date = new Date(val);
+                let year = date.getFullYear();
+                let month = ('0'+date.getMonth()+1).slice(-2);
+                let day = ('0'+date.getDate()).slice(-2);
+                result = `${year}-${month}-${day}`;
+            }
+            return result;
         },
         //수정폼 컨포넌트 호출
         goToUpdate(user_id){
             console.log(user_id)
-            this.$router.push({ name: 'userUpdate', query : {"userId" : user_id}});
+            //변수명 == 필드명, 변수가 가지고 있는 값이 필드의 값
+            // this.$router.push({ name: 'userUpdate', query : {"userId" : user_id}});
+            this.$router.push({ name: 'userForm', query : {"userId" : user_id}});
         },
         //서버에 해당 데이터를 삭제
         deleteInfo(user_id){
@@ -99,7 +114,7 @@ export default{
             .then(res => {
                 //삭제를 배열의 첫번째 값으로 넘기니까 data 속성의 값이 나오지 않음
                 console.log(res)
-                if(res.data.affectedRows > 0){
+                if(res.data.affectedRows != 0){
                     alert(`정상적으로 삭제되었습니다.`);
                     // 보내는 것
                     this.$router.push({ name: 'userList' });
