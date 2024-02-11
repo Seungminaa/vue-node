@@ -5,14 +5,13 @@ const app = express();
 const mysql = require('./db.js');
 
 
-app.use(express.json());
-app.use(express.urlencoded({extended : false}));
+app.use(express.json()).use(express.urlencoded({extended : false}));
 
 app.listen(3000, () => {
     console.log('Server Start, http://localhost:3000');
 });
 
-// 라우팅
+// board 목록
 app.get('/board', async (req, res) => {
     let list = await mysql.executeQuery('boardList');
     res.json(list);
