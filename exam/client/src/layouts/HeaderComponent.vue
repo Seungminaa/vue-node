@@ -15,7 +15,7 @@
             <ul class="nav nav-pills">
                 <li class="nav-item"><router-link to="/" class="nav-link active" aria-current="page">Home</router-link></li>
                 <li class="nav-item"><router-link to="/board" class="nav-link" >전체조회</router-link></li>
-                <li class="nav-item"><router-link to="/" class="nav-link">글 등록</router-link></li>
+                <li class="nav-item"><router-link to="/boardForm" class="nav-link">글 등록</router-link></li>
             </ul>
         </header>
     </div>
