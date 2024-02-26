@@ -77,3 +77,12 @@ app.get('/comment/:no', async (req, res) => {
     let list = await mysql.executeQuery('commentList', no);
     res.json(list);
 });
+
+//결제정보확인
+app.post('/pay', async (req, res) => {
+    console.log(req);
+    let imp_uid = req.body.imp_uid;
+    let merchant_uid = req.body.merchant_uid;
+    let s = {imp_uid:imp_uid, merchant_uid:merchant_uid};
+    res.json(s);
+});
