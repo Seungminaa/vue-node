@@ -1,4 +1,3 @@
-
 require('dotenv').config({ path : './db/dbSetting.env'})
 const express = require('express');
 const app = express();
